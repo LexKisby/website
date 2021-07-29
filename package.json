@@ -1,0 +1,22 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "personal website for Alexander Kisby",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LexKisby/website.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LexKisby/website/issues"
+  },
+  "homepage": "https://github.com/LexKisby/website#readme",
+  "dependencies": {
+    "three": "^0.131.0"
+  }
+}

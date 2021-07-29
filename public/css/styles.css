@@ -1,0 +1,13 @@
+body {
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    color: red;
+
+}
+
+canvas {
+    border: 1px red;
+}
