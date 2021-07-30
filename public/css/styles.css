@@ -5,7 +5,12 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
-    overflow:hidden;
+    
+}
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    height: 0;
+    background: transparent; /* Optional: just make scrollbar invisible */
 }
 
 h1 {
@@ -13,16 +18,18 @@ h1 {
 
 }
 
-canvas {
+container {
     border: 1px solid red;
-    margin: auto;
+    margin: 0;
+    padding: 0;
 }
 
 #background {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
+    padding: 0;
     position: relative;
+    height: 100%;
     
 }
 #foreground {
@@ -31,7 +38,3 @@ canvas {
     left: 20;
 }
 
-div.canvasWrapper {
-    margin:auto;
-    width: 1202px;
-}

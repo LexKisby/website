@@ -1,14 +1,17 @@
-const canvas = document.querySelector("canvas");
+import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.131.1-ABR1EJL0AQkCASkHoEad/mode=imports,min/optimized/three.js';
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  const scene = new THREE.Scene();
+
+const container = document.querySelector("container");
+
+
+
+
+
+
+window.addEventListener("resize", onWindowResize, false);
+
+function onWindowResize() {
+	
+    console.log('hello');
 }
-
-document.addEventListener('DOMContentLoaded', function(event) {
-    resizeCanvas();
-}, false);
-
-window.addEventListener('resize', function(event){
-    resizeCanvas();
-  });
