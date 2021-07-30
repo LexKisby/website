@@ -1,3 +1,9 @@
+@font-face {
+    font-family: capitalFont;
+    src: url(MajorMonoDisplay-Regular.ttf);
+}
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap');
+
 body {
     align-items: center;
     font-family: 'Courier New', Courier, monospace;
@@ -5,7 +11,8 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
-    overflow:hidden;
+    font-family: 'Source Code Pro', monospace;
+    color: rgb(160, 175, 155);
     
     
 }
@@ -16,13 +23,43 @@ body {
 }
 
 h1 {
-    color: red;
+    
+    
+    font-family: capitalFont;
+    
+}
 
+a {
+    color:rgb(160, 175, 155);
+}
+
+a:hover {
+    color:rgb(180, 196, 174)
 }
 
 container {
     margin: 0;
     padding: 0; 
+}
+
+.spacer {
+    height: 20vh;
+    padding: 0;
+    margin: 0;
+}
+
+.row {
+    height: 100vh;
+}
+
+.translucent {
+    
+    background-color: rgba(102, 51, 136, 0.05);
+    
+    animation-name: introBlur;
+    animation-duration: 3s;
+    animation-delay: 0.5s;
+    height: 100vh;
 }
 
 #background {
@@ -35,5 +72,29 @@ container {
     position: absolute;
     top: 0;
     left: 20;
+    width: 100%;
+    height: 100%;
 }
 
+#about {
+    background-color: red;
+}
+
+#skills {
+    background-color: blue;
+}
+
+#other {
+    background-color: coral;
+}
+
+#contact {
+    background-color: black;
+}
+
+@keyframes introBlur {
+    0% {filter: blur(10px);}
+    50% {filter: blur(4px);}
+    80% {filter: blur(3px);}
+    100% {filter: blur(0px);}
+}

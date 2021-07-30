@@ -12,7 +12,7 @@ renderer.toneMapping = THREE.ReinhardToneMapping;
 container.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x000002);
+scene.background = new THREE.Color(0x020204);
 
 const camera = new THREE.PerspectiveCamera(45,	window.innerWidth / window.innerHeight, 1, 1000);
 camera.position.z = 300;
@@ -45,13 +45,27 @@ composer.addPass(bloomPass);
 
 //GEOMETRY
 ////////////////////////////////
-var num_tris = 150;
+var num_tris = 400;
 var geometry = [];
 
-const geo = new THREE.BoxGeometry(10,10,10); 
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } ); 
-const cube = new THREE.Mesh( geo, material ); 
-scene.add( cube ); 
+const geo1 = new THREE.BoxGeometry(50,50,70); 
+const material1 = new THREE.MeshBasicMaterial( { color: 0x666666 } ); 
+const cube1 = new THREE.Mesh( geo1, material1 ); 
+
+const geo2 = new THREE.BoxGeometry(30,30,80); 
+const material2 = new THREE.MeshBasicMaterial( { color: 0x020202 } ); 
+const cube2 = new THREE.Mesh( geo2, material2 ); 
+
+const geo3 = new THREE.BoxGeometry(10,10,90); 
+const material3 = new THREE.MeshBasicMaterial( { color: 0x666666 } ); 
+const cube3 = new THREE.Mesh( geo3, material3 ); 
+
+
+
+
+scene.add( cube1 ); 
+scene.add(cube2);
+scene.add(cube3);
 
 
 
