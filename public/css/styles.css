@@ -6,6 +6,8 @@ body {
     height: 100%;
     margin: 0;
     
+    
+    
 }
 ::-webkit-scrollbar {
     width: 0;  /* Remove scrollbar space */
@@ -19,18 +21,15 @@ h1 {
 }
 
 container {
-    border: 1px solid red;
     margin: 0;
-    padding: 0;
+    padding: 0; 
 }
 
 #background {
-    display: block;
+    display: fixed;
     margin: 0;
     padding: 0;
     position: relative;
-    height: 100%;
-    
 }
 #foreground {
     position: absolute;
