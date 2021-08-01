@@ -1,12 +1,22 @@
 barba.init();
 
 //Kursor
+var Kursor_type = 'kursor--3';
 var Kursor = new kursor( {
     type: 3,
     removeDefaultCursor: true,
     color: 'rgb(30,150,30)',
 } );
 
+function changeCursor( num ) {
+    const cursor_element = document.querySelector( '.kursor' );
+    cursor_element.classList.remove( Kursor_type );
+    Kursor_type = 'kursor--' + num.toString();
+    cursor_element.classList.add( Kursor_type );
+}
+
+
+//////////////////////////////
 var links = document.querySelectorAll( 'a[href]' );
 var cbk = function ( e ) {
     if ( e.currentTarget.href === window.location.href ) {

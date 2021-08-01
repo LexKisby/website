@@ -111,12 +111,6 @@ container {
     padding-right: 80px;
 }
 
-#background {
-    display: fixed;
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
 #foreground {
     position: absolute;
     top: 0;
