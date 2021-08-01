@@ -28,6 +28,16 @@ function setup1() {
         ch.forEach( element => {
             element.remove();
         } );
+        renderer.dispose();
+        for ( const g of geometry ) {
+            scene.remove( g );
+        }
+        geometry.length = 0;
+        for ( let ms of mats ) {
+            ms.dispose();
+        }
+        mats.length = 0;
+
     }
     renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
