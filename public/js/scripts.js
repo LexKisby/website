@@ -1,5 +1,11 @@
 barba.init();
 
+function setup() {
+    dispose4();
+}
+
+
+
 //Kursor
 var Kursor_type = 'kursor--3';
 var Kursor = new kursor( {
@@ -13,6 +19,21 @@ function changeCursor( num ) {
     cursor_element.classList.remove( Kursor_type );
     Kursor_type = 'kursor--' + num.toString();
     cursor_element.classList.add( Kursor_type );
+}
+
+function killCursor() {
+    const cursor_element = document.querySelector( '.kursor' );
+    cursor_element.remove();
+    const cursor_element2 = document.querySelector( '.kursorChild' );
+    cursor_element2.remove();
+}
+
+function makeCursor( type ) {
+    Kursor = new kursor( {
+        type: type,
+        removeDefaultCursor: true,
+        color: 'rgb(30, 150, 30)',
+    } );
 }
 
 
@@ -55,3 +76,4 @@ const observer = new IntersectionObserver( entries => {
     } );
 } );
 
+//contact page

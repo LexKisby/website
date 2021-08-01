@@ -167,9 +167,15 @@ container {
 }
 
 #contact {
-    background-color: black;
-    height: 100vh;
-    position: relative;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+}
+
+#contact:div.card {
+    background-color: whitesmoke;
+    border-radius: 20px;
+    border: 2px black solid;
 }
 
 @keyframes introBlur {

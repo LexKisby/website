@@ -3,82 +3,128 @@ import { RenderPass } from 'https://cdn.skypack.dev/pin/three@v0.131.1-ABR1EJL0A
 import { UnrealBloomPass } from 'https://cdn.skypack.dev/pin/three@v0.131.1-ABR1EJL0AQkCASkHoEad/mode=imports,min/unoptimized/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { EffectComposer } from 'https://cdn.skypack.dev/pin/three@v0.131.1-ABR1EJL0AQkCASkHoEad/mode=imports,min/unoptimized/examples/jsm/postprocessing/EffectComposer.js';
 
-const container = document.querySelector( "container" );
 
-const renderer = new THREE.WebGLRenderer( { antialias: true } );
-renderer.setPixelRatio( window.devicePixelRatio );
-renderer.setSize( window.innerWidth, window );
-renderer.toneMapping = THREE.ReinhardToneMapping;
-container.appendChild( renderer.domElement );
+let renderer;
+let scene;
+let camera;
+let mouse;
+let raycaster;
+let renderScene;
+let bloomParams;
+let bloomPass;
+let composer;
+let container;
 
-const scene = new THREE.Scene();
-scene.background = new THREE.Color( 0x020204 );
-
-const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
-camera.position.z = 300;
-camera.position.y = 0;
-scene.add( camera );
-
-//MOUSE INPUTS
-///////////////////////////////////////////
-const mouse = new THREE.Vector2();
-const raycaster = new THREE.Raycaster();
+let mode;
 
 
-//LIGHTS
-///////////////////////////////////////////
-scene.add( new THREE.AmbientLight( 0x101010 ) );
+function setup1() {
+    mode = 1;
 
-//PASSES
-////////////////////////////////////////////
-const renderScene = new RenderPass( scene, camera );
 
-const bloomParams = {
-    bloomThreshold: 0,
-    exposure: 0.9,
-    bloomStrength: 3,
-    bloomRadius: 0.3
-};
+    container = document.querySelector( "container" );
+    const ch = container.children;
+    if ( ch.length != 0 ) {
+        ch.forEach( element => {
+            element.remove();
+        } );
+    }
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window );
+    renderer.toneMapping = THREE.ReinhardToneMapping;
+    container.appendChild( renderer.domElement );
 
-const bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
-bloomPass.threshold = bloomParams.threshold;
-bloomPass.strength = bloomParams.bloomStrength;
-bloomPass.radius = bloomParams.bloomRadius;
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color( 0x020204 );
 
-const composer = new EffectComposer( renderer );
-composer.addPass( renderScene );
-composer.addPass( bloomPass );
+    camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
+    camera.position.z = 300;
+    camera.position.y = 0;
+    scene.add( camera );
 
+    //MOUSE INPUTS
+    ///////////////////////////////////////////
+    mouse = new THREE.Vector2();
+    raycaster = new THREE.Raycaster();
+
+
+    //LIGHTS
+    ///////////////////////////////////////////
+    scene.add( new THREE.AmbientLight( 0x101010 ) );
+
+    //PASSES
+    ////////////////////////////////////////////
+    renderScene = new RenderPass( scene, camera );
+
+    bloomParams = {
+        bloomThreshold: 0,
+        exposure: 0.9,
+        bloomStrength: 3,
+        bloomRadius: 0.3
+    };
+
+    bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
+    bloomPass.threshold = bloomParams.threshold;
+    bloomPass.strength = bloomParams.bloomStrength;
+    bloomPass.radius = bloomParams.bloomRadius;
+
+    composer = new EffectComposer( renderer );
+    composer.addPass( renderScene );
+    composer.addPass( bloomPass );
+
+    geometry = [];
+    vz = [];
+    mats = [];
+    num_tris = 400;
+
+    initGeometry();
+    onWindowResize();
+    animate();
+
+}
 //GEOMETRY
 ////////////////////////////////
-var num_tris = 400;
-var geometry = [];
-var vz = [];
-var mats = [];
+var num_tris;
+var geometry;
+var vz;
+var mats;
 
-const geo1 = new THREE.BoxGeometry( 50, 50, 70 );
-const material1 = new THREE.MeshBasicMaterial( { color: 0x666666 } );
-const cube1 = new THREE.Mesh( geo1, material1 );
+let geo1;
+let material1;
+let cube1;
 
-const geo2 = new THREE.BoxGeometry( 30, 30, 80 );
-const material2 = new THREE.MeshBasicMaterial( { color: 0x020202 } );
-const cube2 = new THREE.Mesh( geo2, material2 );
+let geo2;
+let material2;
+let cube2;
 
-const geo3 = new THREE.BoxGeometry( 10, 10, 90 );
-const material3 = new THREE.MeshBasicMaterial( { color: 0x111111 } );
-const cube3 = new THREE.Mesh( geo3, material3 );
-
-cube1.name = 'big';
-cube3.name = 'small';
-
-
-scene.add( cube1 );
-scene.add( cube2 );
-scene.add( cube3 );
-
-
+let geo3;
+let material3;
+let cube3;
 
 function initGeometry() {
+    geo1 = new THREE.BoxGeometry( 50, 50, 70 );
+    material1 = new THREE.MeshBasicMaterial( { color: 0x666666 } );
+    cube1 = new THREE.Mesh( geo1, material1 );
+
+    geo2 = new THREE.BoxGeometry( 30, 30, 80 );
+    material2 = new THREE.MeshBasicMaterial( { color: 0x020202 } );
+    cube2 = new THREE.Mesh( geo2, material2 );
+
+    geo3 = new THREE.BoxGeometry( 10, 10, 90 );
+    material3 = new THREE.MeshBasicMaterial( { color: 0x111111 } );
+    cube3 = new THREE.Mesh( geo3, material3 );
+
+    cube1.name = 'big';
+    cube3.name = 'small';
+
+
+    scene.add( cube1 );
+    scene.add( cube2 );
+    scene.add( cube3 );
+
+
+
     const g = new THREE.TetrahedronGeometry( 14 );
     const w = new THREE.WireframeGeometry( g );
 
@@ -114,7 +160,6 @@ function initGeometry() {
 
     }
 }
-initGeometry();
 
 
 
@@ -165,10 +210,10 @@ function onPointerDown( event ) {
 }
 
 
-let counter = 0;
+
 //MODE
 /////////////////
-let mode = 1;
+
 //1 => normal
 //2=> color change on rebound
 //3 => frenzy
@@ -182,7 +227,10 @@ function animate() {
     scene.background = new THREE.Color( 0x020204 );
     if ( mode == 3 ) m5 = -1;
     if ( mode == 3 ) scene.background = new THREE.Color( 0x030303 );
-    if ( mode == 4 ) scene.background = new THREE.Color( 0x030301 );
+    if ( mode == 4 ) {
+        scene.background = new THREE.Color( 0x030301 );
+        m5 = 5;
+    }
     if ( mode == 5 ) {
         m5 = 0;
         scene.background = new THREE.Color( 0x000000 );
@@ -210,12 +258,14 @@ function animate() {
         else if ( geometry[ i ].position.z < -1000 ) {
             vz[ i ] *= -1;
         }
-
-
     }
-    counter += 0.05;
-
 }
+setup1();
 
-onWindowResize();
-animate();
+window.addEventListener( 'click', e => {
+    switch ( e.target.id ) {
+        case 'reset':
+            setup1();
+            break;
+    }
+} );
