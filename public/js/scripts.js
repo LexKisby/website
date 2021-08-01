@@ -1,5 +1,12 @@
 barba.init();
 
+//Kursor
+var Kursor = new kursor( {
+    type: 3,
+    removeDefaultCursor: true,
+    color: 'rgb(30,150,30)',
+} );
+
 var links = document.querySelectorAll( 'a[href]' );
 var cbk = function ( e ) {
     if ( e.currentTarget.href === window.location.href ) {
