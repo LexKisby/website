@@ -13,6 +13,8 @@ body {
     height: 100%;
     margin: 0;
     overflow: hidden;
+    user-select: none;
+    
 }
 
 ::-webkit-scrollbar {
@@ -24,6 +26,7 @@ body {
 h1 {
     font-family: capitalFont;
     font-size: 3vw;
+    
 }
 h3 {
     margin: 2px;
@@ -34,29 +37,16 @@ h3 {
     border: none;
 }
 
-.neuOut {
-    border-radius: 30px;
-    background: #e0e0e0;
-    box-shadow:  8px 8px 16px #aaaaaa,
-             -8px -8px 16px #ffffff;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
+.blinking-cursor {
+  user-select: none;
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
 }
 
-
-
-.neuIn {
-    border-radius: 22px;
-    background: #e0e0e0;
-    box-shadow: inset 8px 8px 16px #aaaaaa,
-            inset -8px -8px 16px #ffffff;
-    align-items: center;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-}
 
 a {
     color:rgb(160, 175, 155);
@@ -90,11 +80,13 @@ container {
 .translucent {
     
     background-color: rgba(102, 51, 136, 0.05);
-    
+    height: 100vh;
+}
+
+.blur {
     animation-name: introBlur;
     animation-duration: 3s;
     animation-delay: 0.5s;
-    height: 100vh;
 }
 
 .main2 {
@@ -121,62 +113,7 @@ container {
     color: rgb(160, 175, 155);
 }
 
-#about {
-    background-color: #e0e0e0;
-    font-family: 'Nunito Sans', sans-serif;;
-    color: rgb(126,138,154);
-    margin: 0px;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 10vw 10vw 10vw 10vw 10vw 10vw 10vw 10vw 10vw 10vw;
-    grid-template-rows: auto;
-    grid-template-areas: 
-    ". . . . . . . . . ."
-    ". . . . . sub2 sub2 sub2 . ."
-    ". . main2 main2 . sub2 sub2 sub2 . ."
-    ". . main2 main2 . sub2 sub2 sub2 . ."
-    ". . main2 main2 . sub2 sub2 sub2 . ."
-    ". . . . . sub2 sub2 sub2 . ."
-    ". links2 links2 links2 . . . . . ."
-    ". . . . . . . . . .";
-}
 
-#about a {
-    display: inline-block;
-    text-align: center;
-    width: 120px;
-    margin: 15px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: rgb(126,138,154);
-}
-
-
-
-
-#skills {
-    background-color: blue;
-    height: 100vh;
-    position: relative;
-}
-
-#other {
-    background-color: coral;
-    height: 100vh;
-    position: relative;
-}
-
-#contact {
-    padding: 0;
-    margin: 0;
-    position: absolute;
-}
-
-#contact:div.card {
-    background-color: whitesmoke;
-    border-radius: 20px;
-    border: 2px black solid;
-}
 
 @keyframes introBlur {
     0% {filter: blur(10px);}
@@ -185,14 +122,3 @@ container {
     100% {filter: blur(0px);}
 }
 
-@keyframes p2Intro {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-}
-
-.page2-anim {
-    animation-name: p2Intro;
-    animation-duration: 1s;
-    animation-delay: 1s;
-    
-}

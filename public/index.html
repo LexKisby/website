@@ -27,33 +27,43 @@
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 </head>
 
-<body data-barba="wrapper">
-    <main data-barba="container" data-barba-namespace="splash">
+<body>
+    <main>
         <container></container>
         <div id="foreground">
             <div class="row">
-                <div class="col-sm-1 translucent">
+                <div class="col-sm-1 translucent blur">
                     <div class="spacer"></div>
                     <h1>...</h1>
                     <div class="spacer"></div>
                     <div class="spacer"></div>
                 </div>
-                <div class="col-sm-3 translucent">
+                <div class="col-sm-3 translucent" id="content">
                     <div class="spacer"></div>
-                    <h1>ALEXANDER<br>KISBY</h1>
-                    welcome to my personal page
-                    <div class="spacer"></div>
-                    <div class="spacer"></div>
-                    <div id="links">
-                        <a href="about.html">about me</a><br>
-                        <a href="#">skills</a><br>
-                        <a href="#">other stuff</a><br>
-                        <a href="contact.html">contact me</a>
+                    <h1 class="blur">ALEXANDER<br>KISBY</h1>
+                    <div>
+                        <span is="type-async" id="text1"></span>
+                        <span class="blinking-cursor">_</span><br><br>
+                        <span is="type-async" id="text2"></span>
+                        <span class="blinking-cursor">_</span><br><br>
+                        <span is="type-async" id="text3"></span>
+                        <span class="blinking-cursor">_</span><br><br>
+                        <span is="type-async" id="text4"></span>
+                        <span class="blinking-cursor">_</span><br>
+                        <div class="smallspacer"></div>
+                        <div class="smallspacer"></div>
+
+                    </div>
+                    <div class="blur" id="links">
+                        <a href="#" onclick="aboutme();">about me</a><br>
+                        <a href="#" onclick="skills();">skills</a><br>
+                        <a href="#" onclick="other();">other stuff</a><br>
+                        <a href="#" onclick="contact();">contact me</a>
                         <div class="smallspacer"></div>
                         <button id="reset">reset</button>
                     </div>
                 </div>
-                <div class="col-sm-1 translucent">
+                <div class="col-sm-1 translucent blur">
                     <div class="spacer"></div>
                     <h1>...</h1>
                 </div>

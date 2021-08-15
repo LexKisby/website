@@ -25,13 +25,14 @@ function setup1() {
     container = document.querySelector( "container" );
     const ch = container.children;
     if ( ch.length != 0 ) {
-        ch.forEach( element => {
-            element.remove();
-        } );
+        ch[ 0 ].remove();
         renderer.dispose();
         for ( const g of geometry ) {
             scene.remove( g );
         }
+        scene.remove( cube1 );
+        scene.remove( cube2 );
+        scene.remove( cube3 );
         geometry.length = 0;
         for ( let ms of mats ) {
             ms.dispose();
